@@ -34,36 +34,50 @@ function submitForm(event) {
   })
     .then((response) => {
       console.log(response);
+      alert("Enviado com sucesso!!");
     })
     .catch((error) => {
       console.log(error);
     })
+
+  setInterval(() => {
+    location.reload()
+  }, 1000);
 }
 
 
-function deleteMovies (id) {
+function deleteMovies(id) {
   console.log(id)
   axios.delete(`http://localhost:8002/deleteMovies.php?id=${id}`)
-  .then(response => console.log(response))
-  .catch(error => console.log(error));
+    .then(response => console.log(response))
+    .catch(error => console.log(error));
+
+
+  setInterval(() => {
+    location.reload()
+  }, 1000);
 }
 
 const filterMovie = ref("");
 
-function selectFilter () {
+function selectFilter() {
   console.log(filterMovie.value);
 
   axios.get(`http://localhost:8002/selectMovies.php?selectFor=${filterMovie.value}`)
-  .then(response => responseData.value = response.data)
-  .catch(error => console.log(error))
+    .then(response => responseData.value = response.data)
+    .catch(error => console.log(error))
+
+
+    setInterval(() => {   
+      location.reload()
+    }, 1000);
 }
 
 </script>
 
 <template>
-  
   <section class="formsQueries">
-    
+
     <form class="formMain" @submit="submitForm">
       <h1>Adicionar Filme</h1>
       <div class="form">
@@ -233,5 +247,4 @@ function selectFilter () {
 h1 {
   text-align: start;
 }
-
 </style>
